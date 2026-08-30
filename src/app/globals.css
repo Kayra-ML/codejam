@@ -1,26 +1,120 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-canvas: #030304;
+  --color-surface: #0a0a0c;
+  --color-elevated: #121214;
+  --color-accent: #8b5cf6;
+  --color-accent-bright: #a78bfa;
+  --color-accent-dim: #6d28d9;
+  --color-ink: #ffffff;
+  --color-muted: #d4d4d8;
+  --color-faint: #a1a1aa;
+  --color-line: #1a1a1e;
+  --color-success: #22c55e;
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-jetbrains);
+  --font-display: var(--font-orbitron);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background: var(--color-canvas);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-outfit), system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  color: var(--color-ink);
+}
+
+.hero-title {
+  font-family: var(--font-orbitron), var(--font-outfit), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.08;
+}
+
+.hero-title-accent {
+  color: var(--color-accent-bright);
+  text-shadow: 0 0 28px rgba(167, 139, 250, 0.55);
+}
+
+.brand-word {
+  font-family: var(--font-orbitron), var(--font-outfit), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent-bright);
+  text-shadow: 0 0 18px rgba(167, 139, 250, 0.45);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.glow-card {
+  border: 1px solid rgba(167, 139, 250, 0.32);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(139, 92, 246, 0.08),
+    0 0 28px -6px rgba(139, 92, 246, 0.45);
+}
+
+.glow-card-strong {
+  border: 1px solid rgba(167, 139, 250, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 0 1px rgba(139, 92, 246, 0.16),
+    0 0 40px -4px rgba(139, 92, 246, 0.55);
+}
+
+.glow-card-white {
+  border: 1.5px solid rgba(255, 255, 255, 0.92);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0 22px -2px rgba(255, 255, 255, 0.35);
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
